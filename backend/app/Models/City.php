@@ -12,7 +12,7 @@ class City extends Model
         "name",
     ];
 
-    public function skyscrepars():HasMany 
+    public function skyscrapers():HasMany 
     {
         return $this->hasMany(Skyscraper::class, "city_id", "id");
     }

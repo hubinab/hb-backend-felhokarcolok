@@ -20,7 +20,7 @@ class SkyscraperResource extends JsonResource
             "height" => $this->height,
             "stories" => $this->stories,
             "finished" => $this->finished,
-            "city" => new CityResource($this->whenLoaded('cities')),
+            "city" => new CityResource($this->whenLoaded('city')),
         ];
     }
 }

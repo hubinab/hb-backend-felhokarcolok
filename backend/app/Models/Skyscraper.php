@@ -14,7 +14,7 @@ class Skyscraper extends Model
         "finished",
     ];
 
-    public function cities():BelongsTo
+    public function city():BelongsTo
     {
         return $this->belongsTo(City::class);
     }

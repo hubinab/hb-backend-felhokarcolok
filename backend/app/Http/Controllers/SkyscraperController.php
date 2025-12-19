@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSkyscraperRequest;
 use App\Http\Requests\UpdateSkyscraperRequest;
+use App\Http\Resources\SkyscraperResource;
 use App\Models\Skyscraper;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class SkyscraperController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResource
     {
-        //
+        //Ez csak a felhokarcolokat adja vissza
+        //return SkyscraperResource::collection(Skyscraper::all());
+        return SkyscraperResource::collection(Skyscraper::with('city')->get());
     }
 
     /**

@@ -17,9 +17,9 @@ class CityResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "country_code" => $this->county_code,
+            "country_code" => $this->country_code,
             "name" => $this->name,
-            "skyscrapers" => SkyscraperResource::collection($this->whenLoaded('skyscapers')),
+            "skyscrapers" => SkyscraperResource::collection($this->whenLoaded('skyscrapers')),
         ];
     }
 }
