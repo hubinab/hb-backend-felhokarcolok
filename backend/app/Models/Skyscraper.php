@@ -7,11 +7,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Skyscraper extends Model
 {
+    // AI
+    // Ha itt ezt nem kapcsolod ki, akkor store-nal,
+    // mindenkep felakar vinni created_at mezot!
+    public $timestamps = false;
+
     protected $fillable = [
         "name",
         "height",
         "stories",
         "finished",
+        "city_id",
     ];
 
     public function city():BelongsTo

@@ -11,7 +11,7 @@ class UpdateSkyscraperRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class UpdateSkyscraperRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "name" => ["required", "string", "between:2,50"],
+            "city_id" => ["required", "integer", "exists:cities,id"],
+            "height" => ["required", "numeric", "between:140,1000"],
+            "stories" => ["nullable", "integer", "between:25,300"],
+            "finished" => ["nullable", "integer", "between:1900,3000"],
         ];
     }
 }

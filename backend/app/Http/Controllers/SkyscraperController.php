@@ -24,9 +24,9 @@ class SkyscraperController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSkyscraperRequest $request)
+    public function store(StoreSkyscraperRequest $request): JsonResource
     {
-        //
+        return new SkyscraperResource(Skyscraper::create($request->validated())->load('city'));
     }
 
     /**
@@ -42,7 +42,9 @@ class SkyscraperController extends Controller
      */
     public function update(UpdateSkyscraperRequest $request, Skyscraper $skyscraper)
     {
-        //
+        $data = $request->validated();
+        $skyscraper->update($data);
+        return new SkyscraperResource($skyscraper->load('city'));
     }
 
     /**

@@ -24,9 +24,9 @@ class CityController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCityRequest $request)
+    public function store(StoreCityRequest $request): JsonResource
     {
-        //
+        return new CityResource(City::create($request->validated())->load("skyscrapers"));
     }
 
     /**
@@ -40,9 +40,11 @@ class CityController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCityRequest $request, City $city)
+    public function update(UpdateCityRequest $request, City $city): JsonResource
     {
-        //
+        $data = $request->validated();
+        $city->update($data);
+        return new CityResource($city->load("skyscrapers"));
     }
 
     /**
