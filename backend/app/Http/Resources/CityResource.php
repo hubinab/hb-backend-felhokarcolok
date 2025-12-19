@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Http\Resources;
+
+use App\Models\Skyscraper;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class CityResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        return [
+            "id" => $this->id,
+            "country_code" => $this->county_code,
+            "name" => $this->name,
+            "skyscrapers" => SkyscraperResource::collection($this->whenLoaded('skyscapers')),
+        ];
+    }
+}
