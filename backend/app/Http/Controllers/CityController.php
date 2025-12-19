@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCityRequest;
 use App\Http\Resources\CityResource;
 use App\Models\City;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Response;
 
 class CityController extends Controller
 {
@@ -31,9 +32,9 @@ class CityController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(City $city)
+    public function show(City $city): JsonResource
     {
-        //
+        return new CityResource($city->load("skyscrapers"));
     }
 
     /**
@@ -47,8 +48,8 @@ class CityController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(City $city)
+    public function destroy(City $city): Response
     {
-        //
+        return $city->delete() ? response()->noContent() : abort(500);
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateSkyscraperRequest;
 use App\Http\Resources\SkyscraperResource;
 use App\Models\Skyscraper;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Response;
 
 class SkyscraperController extends Controller
 {
@@ -31,9 +32,9 @@ class SkyscraperController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Skyscraper $skyscraper)
+    public function show(Skyscraper $skyscraper): JsonResource
     {
-        //
+        return new SkyscraperResource($skyscraper->load('city'));
     }
 
     /**
@@ -47,8 +48,8 @@ class SkyscraperController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Skyscraper $skyscraper)
+    public function destroy(Skyscraper $skyscraper): Response
     {
-        //
+        return $skyscraper->delete() ? response()->noContent() : abort(500);
     }
 }
